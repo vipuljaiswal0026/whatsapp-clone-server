@@ -19,7 +19,7 @@ export const addUser = async (req, res) => {
 
 export const getUsers = async (req, res) => {
   try {
-    console.log(req);
+    console.log("success");
     const users = await User.find({});
     return res.status(200).json(users);
   } catch (error) {
