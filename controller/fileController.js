@@ -24,7 +24,7 @@ export const uploadFile = async (req, res) => {
 
     return res.status(200).json(key);
   } catch (error) {
-    return res.status(501).json(err);
+    return res.status(501).json(error);
   }
 };
 

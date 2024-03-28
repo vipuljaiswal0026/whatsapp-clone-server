@@ -12,7 +12,7 @@ const s3 = new AWS.S3({
   signatureVersion: "v4",
 });
 
-const bucketName = "vipul-whatsapp-clone";
+const bucketName = "whatsapp-clone-2";
 const folderName = "uploads";
 
 // Function to upload file to S3
