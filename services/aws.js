@@ -1,4 +1,5 @@
 import AWS from "aws-sdk";
+import fs from "fs";
 
 import dotenv from "dotenv";
 
@@ -20,7 +21,7 @@ export function uploadFileToS3(file) {
     const params = {
       Bucket: bucketName,
       Key: `${folderName}/${Date.now()}-${file.originalname}`,
-      Body: file.buffer,
+      Body: fs.createReadStream(file.path),
     };
 
     s3.upload(params, (err, data) => {
@@ -28,6 +29,26 @@ export function uploadFileToS3(file) {
         reject(err);
       } else {
         resolve(data.Location);
+      }
+    });
+  });
+}
+
+export function downloadFilefromS3(key) {
+  return new Promise((resolve, reject) => {
+    const params = {
+      Bucket: bucketName,
+      Key: key, // Specify the key (filename) of the object to read
+    };
+
+    // Read file from S3
+    s3.getObject(params, (err, data) => {
+      if (err) {
+        console.error("Error reading file from S3:", err);
+        reject(err);
+      } else {
+        // File data is available in data.Body
+        resolve(data.Body);
       }
     });
   });
