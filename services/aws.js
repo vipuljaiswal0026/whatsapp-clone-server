@@ -7,8 +7,8 @@ dotenv.config();
 
 // AWS configuration
 const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRET_KEY,
+  accessKeyId: process.env.PROJECT_AWS_ACCESS_KEY,
+  secretAccessKey: process.env.PROJECT_AWS_SECRET_KEY,
   signatureVersion: "v4",
 });
 
